@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>システム構築課題 | 社員情報システムの機能作成</title>
+        <meta name="description" content="システム構築課題。社員情報システムの機能作成">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap-reboot.min.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div id="app">
+            <table>
+                <tr>
+                    <th v-on:click="sortBy('id')" v-bind:class="addClass('id')">ID</th>
+                    <th v-on:click="sortBy('name')" v-bind:class="addClass('name')">名前</th>
+                    <th v-on:click="sortBy('company')" v-bind:class="addClass('company')">会社名</th>
+                    <th v-on:click="sortBy('division')" v-bind:class="addClass('division')">部署</th>
+                    <th v-on:click="sortBy('title')" v-bind:class="addClass('title')">役職</th>
+                </tr>
+                <template v-for="card in cards" v-bind:key="card.id">
+                    <tr>
+                        <td>{{ card.id }}</td>
+                        <td>{{ card.name }}</td>
+                        <td>{{ card.company }}</td>
+                        <td>{{ card.division }}</td>
+                        <td>{{ card.title }}</td>
+                    </tr>
+                </template>
+            </table>
+        </div>
+
+        <script src="https://unpkg.com/vue@next"></script>
+        <script src="script/main.js"></script>
+    </body>
+</html>
