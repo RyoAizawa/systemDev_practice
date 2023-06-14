@@ -18,15 +18,45 @@ table {
   text-align: center;
   border-collapse: collapse;
 }
-table tr:first-of-type {
+
+.search,
+.addUser,
+.userList {
+  padding: 20px;
+}
+
+/* 検索領域 */
+.search select {
+  width: 100px;
+  height: 30px;
+  margin-right: 10px;
+}
+.search input {
+  margin-right: 10px;
+}
+.errorMsg {
+  color: red;
+  margin-left: 20px;
+}
+
+/* ユーザー追加領域 */
+.addUser table tr:first-of-type {
+  background-color: #d2def8;
+}
+.addUser table tr:first-of-type small {
+  color: #777;
+}
+
+
+/* リスト領域 */
+.userList table tr:first-of-type {
   color: #fff;
   background-color: #518ed0;
 }
-table tr:first-of-type:hover {
+.userList table tr:first-of-type:hover {
   cursor: pointer;
 }
-
-tr:nth-of-type(odd) {
+.userList tr:nth-of-type(odd) {
   background-color: #f2f7fb;
 }
 th,
@@ -41,21 +71,4 @@ td {
 /* 降順のマーク */
 .desc::after {
   content: "▼";
-}
-
-/* 検索領域 */
-.search {
-  padding: 20px;
-}
-.search select {
-  width: 100px;
-  height: 30px;
-  margin-right: 10px;
-}
-.search input {
-  margin-right: 10px;
-}
-.search span {
-  color: red;
-  margin-left: 20px;
 }

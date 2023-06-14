@@ -12,6 +12,7 @@
     <body>
         <div id="app">
             <div class="search">
+                <h2>ユーザー検索</h2>
                 <select v-model="searchSelect">
                     <option value="default">標準</option>
                     <option value="id">ID</option>
@@ -22,31 +23,50 @@
                 </select>
                 <input v-model="searchText" placeholder="入力してください">
                 <button v-on:click="search()">検索</button>
-                <span v-if="error">検索する語句を入力してください</span>
+                <span class="errorMsg" v-if="searchError">検索する語句を入力してください</span>
             </div>
-
-            <hr>
-
-            <table>
-                <tr>
-                    <th v-on:click="sortBy('id')" v-bind:class="addClass('id')">ID</th>
-                    <th v-on:click="sortBy('name')" v-bind:class="addClass('name')">名前</th>
-                    <th v-on:click="sortBy('company')" v-bind:class="addClass('company')">会社名</th>
-                    <th v-on:click="sortBy('division')" v-bind:class="addClass('division')">部署</th>
-                    <th v-on:click="sortBy('title')" v-bind:class="addClass('title')">役職</th>
-                </tr>
-                <template v-for="card in filteredCards" v-bind:key="card.id">
+            <div class="addUser">
+                <h2>ユーザーの追加</h2>
+                <table>
                     <tr>
-                        <td>{{ card.id }}</td>
-                        <td>{{ card.name }}</td>
-                        <td>{{ card.company }}</td>
-                        <td>{{ card.division }}</td>
-                        <td>{{ card.title }}</td>
+                        <td>名前<br><small>※苗字と名前の間に半角スペース</small></td>
+                        <td>会社名</td>
+                        <td>部署</td>
+                        <td>役割<br><small>※任意</small></td>
                     </tr>
-                </template>
-            </table>
+                    <tr>
+                        <td><input maxlength="50" type="text" v-model.trim="addName"></td>
+                        <td><input maxlength="50" type="text" v-model.trim="addCompany"></td>
+                        <td><input maxlength="50" type="text" v-model.trim="addDivision"></td>
+                        <td><input maxlength="50" type="text" v-model.trim="addTitle"></td>
+                    </tr>
+                </table>
+                <button v-on:click="addUser()">追加</button>
+                <span class="errorMsg">{{ addErrorMsg }}</span>
+            </div>
+            <hr>
+            <div class="userList">
+                <h2>社員情報</h2>
+                <table>
+                    <tr>
+                        <th v-on:click="sortBy('id')" v-bind:class="addClass('id')">ID</th>
+                        <th v-on:click="sortBy('name')" v-bind:class="addClass('name')">名前</th>
+                        <th v-on:click="sortBy('company')" v-bind:class="addClass('company')">会社名</th>
+                        <th v-on:click="sortBy('division')" v-bind:class="addClass('division')">部署</th>
+                        <th v-on:click="sortBy('title')" v-bind:class="addClass('title')">役職</th>
+                    </tr>
+                    <template v-for="card in filteredCards" v-bind:key="card.id">
+                        <tr>
+                            <td>{{ card.id }}</td>
+                            <td>{{ card.name }}</td>
+                            <td>{{ card.company }}</td>
+                            <td>{{ card.division }}</td>
+                            <td>{{ card.title }}</td>
+                        </tr>
+                    </template>
+                </table>
+            </div>
         </div>
-
         <script src="https://unpkg.com/vue@next"></script>
         <script src="script/main.js"></script>
     </body>
