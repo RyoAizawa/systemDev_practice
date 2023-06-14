@@ -42,3 +42,20 @@ td {
 .desc::after {
   content: "▼";
 }
+
+/* 検索領域 */
+.search {
+  padding: 20px;
+}
+.search select {
+  width: 100px;
+  height: 30px;
+  margin-right: 10px;
+}
+.search input {
+  margin-right: 10px;
+}
+.search span {
+  color: red;
+  margin-left: 20px;
+}

@@ -11,6 +11,22 @@
     </head>
     <body>
         <div id="app">
+            <div class="search">
+                <select v-model="searchSelect">
+                    <option value="default">標準</option>
+                    <option value="id">ID</option>
+                    <option value="name">名前</option>
+                    <option value="company">会社名</option>
+                    <option value="division">部署</option>
+                    <option value="title">役職</option>
+                </select>
+                <input v-model="searchText" placeholder="入力してください">
+                <button v-on:click="search()">検索</button>
+                <span v-if="error">検索する語句を入力してください</span>
+            </div>
+
+            <hr>
+
             <table>
                 <tr>
                     <th v-on:click="sortBy('id')" v-bind:class="addClass('id')">ID</th>
@@ -19,7 +35,7 @@
                     <th v-on:click="sortBy('division')" v-bind:class="addClass('division')">部署</th>
                     <th v-on:click="sortBy('title')" v-bind:class="addClass('title')">役職</th>
                 </tr>
-                <template v-for="card in cards" v-bind:key="card.id">
+                <template v-for="card in filteredCards" v-bind:key="card.id">
                     <tr>
                         <td>{{ card.id }}</td>
                         <td>{{ card.name }}</td>
